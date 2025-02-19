@@ -1,0 +1,22 @@
+
+
+
+.startButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.startButton:hover {
+  background-color: #45a049;
+}
+
+.startButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

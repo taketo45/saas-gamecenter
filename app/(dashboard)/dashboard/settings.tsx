@@ -3,11 +3,15 @@
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import UserInfo from '@/components/userinfo';
+import Password from '@/components/password';
+import DeleteAccount from '@/components/deleteAccount';
+import Activity from '@/components/activity';
 import { customerPortalAction } from '@/lib/payments/actions';
 import { useActionState } from 'react';
 import { TeamDataWithMembers, User } from '@/lib/db/schema';
 import { removeTeamMember } from '@/app/(login)/actions';
-import { InviteTeamMember } from './invite-team';
+
 
 type ActionState = {
   error?: string;
@@ -27,17 +31,17 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
   return (
     <section className="flex-1 p-4 lg:p-8">
       <p>/dashboard/settings.tsx</p>
-      <h1 className="text-lg lg:text-2xl font-medium mb-6">Team Settings</h1>
+      <h1 className="text-lg lg:text-2xl font-medium mb-6">設定</h1>
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Team Subscription</CardTitle>
+          <CardTitle>購入</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
               <div className="mb-4 sm:mb-0">
                 <p className="font-medium">
-                  Current Plan: {teamData.planName || 'Free'}
+                  現在のプラン: {teamData.planName || 'Free'}
                 </p>
                 <p className="text-sm text-muted-foreground">
                   {teamData.subscriptionStatus === 'active'
@@ -49,7 +53,7 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
               </div>
               <form action={customerPortalAction}>
                 <Button type="submit" variant="outline">
-                  Manage Subscription
+                  プランの変更
                 </Button>
               </form>
             </div>
@@ -58,7 +62,7 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
       </Card>
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Team Members</CardTitle>
+          <CardTitle>ユーザー情報</CardTitle>
         </CardHeader>
         <CardContent>
           <ul className="space-y-4">
@@ -107,7 +111,10 @@ export function Settings({ teamData }: { teamData: TeamDataWithMembers }) {
           )}
         </CardContent>
       </Card>
-      <InviteTeamMember />
+      <UserInfo />
+      <Password />
+      {/* <Activity /> */}
+      <DeleteAccount />
     </section>
   );
 }

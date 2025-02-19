@@ -25,7 +25,7 @@ export default async function PricingPage() {
         <PricingCard
           name={basePlan?.name || 'Base'}
           price={basePrice?.unitAmount || 800}
-          interval={basePrice?.interval || 'month'}
+          interval={basePrice?.interval || '月'}
           trialDays={basePrice?.trialPeriodDays || 7}
           features={[
             'Unlimited Usage',
@@ -37,7 +37,7 @@ export default async function PricingPage() {
         <PricingCard
           name={plusPlan?.name || 'Plus'}
           price={plusPrice?.unitAmount || 1200}
-          interval={plusPrice?.interval || 'month'}
+          interval={plusPrice?.interval || '月'}
           trialDays={plusPrice?.trialPeriodDays || 7}
           features={[
             'Everything in Base, and:',
@@ -70,12 +70,12 @@ function PricingCard({
     <div className="pt-6">
       <h2 className="text-2xl font-medium text-gray-900 mb-2">{name}</h2>
       <p className="text-sm text-gray-600 mb-4">
-        with {trialDays} day free trial
+        {trialDays} 日間のフリートライアル
       </p>
       <p className="text-4xl font-medium text-gray-900 mb-6">
         ${price / 100}{' '}
         <span className="text-xl font-normal text-gray-600">
-          per user / {interval}
+          1ユーザー / {interval}
         </span>
       </p>
       <ul className="space-y-4 mb-8">

@@ -4,26 +4,34 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Users, Settings, Shield, Activity, Menu } from 'lucide-react';
+import { Users, Settings, Shield, Activity, Menu, Grab, MessageCircleQuestion } from 'lucide-react';
+
+import gameSstyles from './janken/JankenGame.module.css';
+import headerStyles from './janken/HeaderStyle.module.css';
+import { useAtom } from 'jotai';
+import { userStatusAtom } from '../../atoms/userStatusAtom';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+    const [userStatus] = useAtom(userStatusAtom);
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const navItems = [
-    { href: '/dashboard', icon: Users, label: 'Team' },
-    { href: '/dashboard/general', icon: Settings, label: 'General' },
+    { href: '/dashboard', icon: Settings, label: '設定' },
     { href: '/dashboard/activity', icon: Activity, label: 'Activity' },
-    { href: '/dashboard/security', icon: Shield, label: 'Security' },
+    { href: '/dashboard/janken', icon: Grab, label: 'じゃんけん' },
+    { href: '/dashboard/quiz', icon: MessageCircleQuestion, label: 'クイズ' },
   ];
 
   return (
     <div className="flex flex-col min-h-[calc(100dvh-68px)] max-w-7xl mx-auto w-full">
       <p>/dashboard/layout.tsx</p>
+      {/* <h1 className={gameSstyles.title}>{title}</h1> */}
+      <div className={gameSstyles.status}><p>勝ち数: {userStatus.totalWinCount}</p> <p>メダル数： {userStatus.medal}</p></div>
       {/* Mobile header */}
       <div className="lg:hidden flex items-center justify-between bg-white border-b border-gray-200 p-4">
         <div className="flex items-center">

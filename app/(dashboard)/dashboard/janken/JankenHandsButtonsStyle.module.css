@@ -1,0 +1,31 @@
+
+
+.handButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.handButton {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c3f2ff;
+  border-radius: 50%;
+  border: 1px solid #666;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+.handButton:hover {
+  background-color: #0066CC;
+  color: white;
+}
+
+.handButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+

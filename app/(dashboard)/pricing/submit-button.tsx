@@ -20,7 +20,7 @@ export function SubmitButton() {
         </>
       ) : (
         <>
-          Get Started
+          購入
           <ArrowRight className="ml-2 h-4 w-4" />
         </>
       )}

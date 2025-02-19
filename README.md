@@ -101,30 +101,39 @@ Next.js、Supabase、PostgreSQL、drizzle、stripeの動作を確認し、プロ
 ├── LICENSE
 ├── README.md
 ├── app
-│   ├── (dashboard)
-│   ├── (login)
-│   ├── api
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── not-found.tsx
+│   ├── (dashboard)
+│   ├── (login)
+│   ├── api
+│   ├── atoms
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── not-found.tsx
+├── applicationRelation.md
 ├── components
-│   └── ui
+│   ├── activity.tsx
+│   ├── deleteAccount.tsx
+│   ├── password.tsx
+│   ├── ui
+│   └── userinfo.tsx
 ├── components.json
 ├── docker-compose.yml
 ├── drizzle.config.ts
 ├── lib
-│   ├── auth
-│   ├── db
-│   ├── payments
-│   └── utils.ts
+│   ├── auth
+│   ├── db
+│   ├── payments
+│   └── utils.ts
 ├── middleware.ts
 ├── next-env.d.ts
 ├── next.config.ts
-├── package-lock.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── postcss.config.mjs
+├── public
+│   ├── .DS_Store
+│   ├── img
+│   └── sound
 └── tsconfig.json
 </pre>
 

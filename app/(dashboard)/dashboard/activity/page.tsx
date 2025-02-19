@@ -77,7 +77,7 @@ export default async function ActivityPage() {
       <h1 className="text-lg lg:text-2xl font-medium text-gray-900 mb-6">
         Activity Log
       </h1>
-      <Card>
+      <Card  className="mb-8">
         <CardHeader>
           <CardTitle>Recent Activity</CardTitle>
         </CardHeader>

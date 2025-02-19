@@ -1,0 +1,21 @@
+
+
+.multiplierRow {
+  display: flex;
+  justify-content: space-around;
+}
+
+.multiplier {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffcaca;
+  border: 2px solid #c8412d;
+}
+
+.activeMultiplier {
+  background-color: #f98fab;
+}
