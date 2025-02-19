@@ -1,0 +1,7 @@
+storage/app/public/awards/
+├── award_1_1_default.jpg  # 原宿・文化
+├── award_1_2_default.jpg  # 原宿・歴史
+├── award_1_3_default.jpg  # 原宿・言語
+├── award_1_4_default.jpg  # 原宿・人物
+└── award_1_5_default.jpg  # 原宿・経済
+

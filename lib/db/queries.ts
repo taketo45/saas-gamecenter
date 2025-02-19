@@ -1,6 +1,6 @@
 import { desc, and, eq, isNull } from 'drizzle-orm';
 import { db } from './drizzle';
-import { activityLogs, teamMembers, teams, users } from './schema';
+import { activityLogs, teamMembers, teams, users, regions, quizCategories, quizzes, quizOptions } from './schema';
 import { cookies } from 'next/headers';
 import { verifyToken } from '@/lib/auth/session';
 
@@ -126,4 +126,29 @@ export async function getTeamForUser(userId: number) {
   });
 
   return result?.teamMembers[0]?.team || null;
+}
+
+
+export async function getQuizRegions() {
+  return await db.select().from(regions).orderBy(regions.displayName);
+}
+
+export async function getQuizCategories() {
+  return await db.select().from(quizCategories).orderBy(quizCategories.displayName);
+}
+
+export async function getQuizzes(regionId: number, categoryId: number) {
+  return await db
+    .select()
+    .from(quizzes)
+    .where(and(eq(quizzes.regionId, regionId), eq(quizzes.categoryId, categoryId)))
+    .orderBy(quizzes.id);
+}
+
+export async function getQuizOptions(quizId: number) {
+  return await db
+    .select()
+    .from(quizOptions)
+    .where(eq(quizOptions.quizId, quizId))
+    .orderBy(quizOptions.displayOrder);
 }
