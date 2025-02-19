@@ -10,17 +10,9 @@
   <img src="https://img.shields.io/badge/-Next.js-000000.svg?logo=next.js&style=for-the-badge">
   <img src="https://img.shields.io/badge/-TailwindCSS-000000.svg?logo=tailwindcss&style=for-the-badge">
   <img src="https://img.shields.io/badge/-React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-
-  <!-- Supabase -->
   <img src="https://img.shields.io/badge/-supabase-3FCF8E.svg?logo=mysql&style=for-the-badge&logoColor=white">
-
-  <!-- Postgres SQL -->
   <img src="https://img.shields.io/badge/-postgresql-4169E1.svg?logo=postgresql&style=for-the-badge&logoColor=white">
-
-  <!-- drizzle -->
   <img src="https://img.shields.io/badge/-drizzle-C5F74F.svg?logo=postgresql&style=for-the-badge&logoColor=black">
-
-  <!-- インフラ一覧 -->
   <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=for-the-badge">
   <img src="https://img.shields.io/badge/-githubactions-FFFFFF.svg?logo=github-actions&style=for-the-badge">
 </p>
@@ -33,17 +25,7 @@
 4. [開発環境構築](#開発環境構築)
 5. [トラブルシューティング](#トラブルシューティング)
 
-<!-- READMEの作成方法のドキュメントのリンク -->
-<br />
-<div align="right">
-    <a href="READMEの作成方法のリンク"><strong>READMEの作成方法 »</strong></a>
-</div>
-<br />
-<!-- Dockerfileのドキュメントのリンク -->
-<div align="right">
-    <a href="Dockerfileの詳細リンク"><strong>Dockerfileの詳細 »</strong></a>
-</div>
-<br />
+
 <!-- プロジェクト名を記載 -->
 
 ## プロジェクト名
@@ -53,17 +35,14 @@ Next.js、Supabase、PostgreSQL、drizzle、stripe検証プロジェクト
 <!-- プロジェクトについて -->
 
 ## プロジェクトについて
+- Next.js、Supabase、PostgreSQL、drizzle、stripeの動作を確認し、プロダクト開発のベースとなる技術を検証することが目的のプロジェクト
+- ユーザー登録、ログイン、ユーザー情報更新、パスワード変更、アカウント削除、Stripeによるサブスク購入、Reactアプリ間のState連携といった機能の検証を行う
+- ログイン後stripeテスト環境からテスト用クレジットカードでサブスク購入することでプレイすることが可能になる
+- バニラJSで作成されたじゃんけんゲームは、React＋Jotaiで動くように改修を行った
+- PHP/Laravel上で作成されたクイズゲームは、React/Next.js/drizzle/Suppabase(PostgresSQL)で動作するように改修を行った
 
-Next.js、Supabase、PostgreSQL、drizzle、stripeの動作を確認し、プロダクト開発のベースとなるプロジェクト
 
 <!-- プロジェクトの概要を記載 -->
-
-  <p align="left">
-    <br />
-    <!-- プロジェクト詳細にBacklogのWikiのリンク -->
-    <a href="Backlogのwikiリンク"><strong>プロジェクト詳細 »</strong></a>
-    <br />
-    <br />
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
@@ -145,13 +124,13 @@ Next.js、Supabase、PostgreSQL、drizzle、stripeの動作を確認し、プロ
 
 ### コンテナの作成と起動
 
+<pre>
 pnpm install
 pnpm db:setup
-
 pnpm db:migrate
 pnpm db:seed
-
 pnpm dev
+</pre>
 
 ### 動作確認
 
@@ -181,22 +160,24 @@ ctrl + c
 
 ### コマンド一覧
 pnpm install
+
 pnpm db:setup
 
 pnpm db:migrate
+
 pnpm db:seed
 
 pnpm dev
+
 | Make                | 実行する処理                                                            | 元のコマンド                                                                               |
 | ------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | pnpm install       | 不足しているモジュールのインストールを実施する                                 |                                                                                          |
-| pnpm db:setup        | seedファイルを実行してDB環境にユーザーと初期テーブルを構築                   |                                                                                            |
+| pnpm db:setup        | PostgresSQLをDocker上にインストールした上で54322ポートで実行                   |                                                                                            |
 | pnpm db:migrate      | 追加されたDB情報を統合                                                  |                                                                                          |
-| pnpm db:seed          |                                                                    |                                                                                           |
+| pnpm db:seed          | seedファイルを実行してDB環境に初期テーブルを作成し、初期ユーザー等のテストデータの挿入              |                                                                                           |
 | pnpm dev             | 開発環境の実行                                                        |                                                                                           |
 
-### リモートデバッグの方法
-
+<p align="right">(<a href="#top">トップへ</a>)</p>
 
 
 ## トラブルシューティング
@@ -204,6 +185,28 @@ pnpm dev
 ### zsh: command not found: pnpm
 
 pnpmのインストールが必要
+
+### pnpm db:setupが失敗する
+
+既存のPostgreSQLコンテナが競合している可能性が高いため、以下のステップを実行
+
+1. 使用していない古いPostgreSQLコンテナを削除する
+
+```bash
+docker rm next_saas_starter_postgres fullstack-eyesonyou-db-1
+```
+
+2. 不要なPostgreSQLイメージも削除する
+
+```bash
+docker rmi postgres:16.4-alpine postgres:14
+```
+
+3. その後、新しいSupabaseアプリケーションのセットアップ
+```bash
+pnpm db:setup
+# 以降のコマンドを順次実行
+```
 
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
